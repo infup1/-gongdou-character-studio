@@ -1,0 +1,127 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+  <title>宫廷世界档案</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div id="app">
+    <aside class="sidebar">
+      <div class="brand">
+        <div class="brand-mark">◈</div>
+        <div>
+          <div class="eyebrow">WORLD ARCHIVE</div>
+          <h1>宫廷世界档案</h1>
+        </div>
+      </div>
+
+      <nav class="main-nav">
+        <button class="nav-item active" data-view="background">◫ <span>世界背景</span></button>
+        <button class="nav-item" data-view="characters">♢ <span>人物</span></button>
+        <button class="nav-item disabled" title="第一版暂未开放">◇ <span>势力</span><small>待开发</small></button>
+        <button class="nav-item disabled" title="第一版暂未开放">⌖ <span>地点</span><small>待开发</small></button>
+        <button class="nav-item disabled" title="第一版暂未开放">◷ <span>时间线</span><small>待开发</small></button>
+        <button class="nav-item disabled" title="第一版暂未开放">△ <span>事件</span><small>待开发</small></button>
+      </nav>
+
+      <div class="sidebar-bottom">
+        <button id="exportBtn" class="utility-btn">导出全部数据</button>
+        <label class="utility-btn">
+          导入数据
+          <input id="importInput" type="file" accept=".json,application/json" hidden>
+        </label>
+        <div class="system-status"><i></i> 本地档案已自动保存</div>
+      </div>
+    </aside>
+
+    <main class="main">
+      <header class="topbar">
+        <div>
+          <div class="eyebrow">CLASSIFIED / ARCHIVE SYSTEM</div>
+          <div id="viewTitle" class="top-title">世界背景</div>
+        </div>
+        <div class="top-status">
+          <span>系统状态</span><b>ACTIVE</b>
+        </div>
+      </header>
+
+      <section id="backgroundView" class="view">
+        <div class="section-head">
+          <div>
+            <div class="eyebrow">WORLD STRUCTURE</div>
+            <h2>世界背景</h2>
+            <p>建立你的世界规则、制度、时代与隐藏设定。</p>
+          </div>
+          <button id="addRootBackground" class="primary-btn">＋ 新建分支</button>
+        </div>
+        <div id="backgroundTree" class="tree-panel"></div>
+      </section>
+
+      <section id="charactersView" class="view hidden">
+        <div class="character-layout">
+          <aside class="character-list">
+            <div class="list-head">
+              <div>
+                <div class="eyebrow">SUBJECTS</div>
+                <h2>人物档案</h2>
+              </div>
+              <button id="newCharacterBtn" class="icon-btn" title="新建人物">＋</button>
+            </div>
+            <input id="characterSearch" class="search" placeholder="搜索人物……">
+            <div id="characterListItems"></div>
+          </aside>
+
+          <section class="editor">
+            <div id="emptyCharacter" class="empty-state">
+              <div class="empty-symbol">◇</div>
+              <h2>尚未选择人物</h2>
+              <p>创建一份人物档案，开始建立你的宫廷世界。</p>
+              <button id="emptyNewBtn" class="primary-btn">＋ 新建人物</button>
+            </div>
+
+            <div id="characterEditor" class="hidden">
+              <div class="subject-header">
+                <div>
+                  <div class="eyebrow">SUBJECT // <span id="subjectId"></span></div>
+                  <input id="characterName" class="subject-name" placeholder="人物姓名">
+                  <div class="subject-meta">STATUS: <span>ACTIVE</span></div>
+                </div>
+                <div class="subject-actions">
+                  <button id="duplicateCharacterBtn" class="secondary-btn">复制</button>
+                  <button id="deleteCharacterBtn" class="danger-btn">删除</button>
+                </div>
+              </div>
+
+              <div class="branch-toolbar">
+                <span>常用分支</span>
+                <div id="commonBranches" class="common-branches"></div>
+                <button id="addCustomBranchBtn" class="secondary-btn">＋ 添加分支</button>
+              </div>
+
+              <div id="characterTree" class="character-tree"></div>
+            </div>
+          </section>
+        </div>
+      </section>
+    </main>
+  </div>
+
+  <template id="branchTemplate">
+    <div class="branch-node">
+      <div class="branch-row">
+        <button class="toggle-btn" title="展开/折叠">⌄</button>
+        <span class="branch-icon">◇</span>
+        <input class="branch-title" placeholder="分支名称">
+        <button class="branch-add" title="添加子分支">＋</button>
+        <button class="branch-delete" title="删除">×</button>
+      </div>
+      <textarea class="branch-content" placeholder="在这里记录内容……"></textarea>
+      <div class="branch-children"></div>
+    </div>
+  </template>
+
+  <script src="script.js"></script>
+</body>
+</html>
